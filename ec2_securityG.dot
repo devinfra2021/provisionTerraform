@@ -1,0 +1,36 @@
+digraph {
+	compound = "true"
+	newrank = "true"
+	subgraph "root" {
+		"[root] aws_instance.myec2 (expand)" [label = "aws_instance.myec2", shape = "box"]
+		"[root] aws_security_group.web-ec2-security-group (expand)" [label = "aws_security_group.web-ec2-security-group", shape = "box"]
+		"[root] output.aZone" [label = "output.aZone", shape = "note"]
+		"[root] output.fqdn-ec2" [label = "output.fqdn-ec2", shape = "note"]
+		"[root] output.privateIP" [label = "output.privateIP", shape = "note"]
+		"[root] output.publicIP" [label = "output.publicIP", shape = "note"]
+		"[root] provider[\"registry.terraform.io/hashicorp/aws\"]" [label = "provider[\"registry.terraform.io/hashicorp/aws\"]", shape = "diamond"]
+		"[root] var.ami-id" [label = "var.ami-id", shape = "note"]
+		"[root] var.compute-type" [label = "var.compute-type", shape = "note"]
+		"[root] var.tag-name" [label = "var.tag-name", shape = "note"]
+		"[root] aws_instance.myec2 (expand)" -> "[root] provider[\"registry.terraform.io/hashicorp/aws\"]"
+		"[root] aws_instance.myec2 (expand)" -> "[root] var.ami-id"
+		"[root] aws_instance.myec2 (expand)" -> "[root] var.compute-type"
+		"[root] aws_instance.myec2 (expand)" -> "[root] var.tag-name"
+		"[root] aws_security_group.web-ec2-security-group (expand)" -> "[root] provider[\"registry.terraform.io/hashicorp/aws\"]"
+		"[root] aws_security_group.web-ec2-security-group (expand)" -> "[root] var.tag-name"
+		"[root] meta.count-boundary (EachMode fixup)" -> "[root] aws_security_group.web-ec2-security-group (expand)"
+		"[root] meta.count-boundary (EachMode fixup)" -> "[root] output.aZone"
+		"[root] meta.count-boundary (EachMode fixup)" -> "[root] output.fqdn-ec2"
+		"[root] meta.count-boundary (EachMode fixup)" -> "[root] output.privateIP"
+		"[root] meta.count-boundary (EachMode fixup)" -> "[root] output.publicIP"
+		"[root] output.aZone" -> "[root] aws_instance.myec2 (expand)"
+		"[root] output.fqdn-ec2" -> "[root] aws_instance.myec2 (expand)"
+		"[root] output.privateIP" -> "[root] aws_instance.myec2 (expand)"
+		"[root] output.publicIP" -> "[root] aws_instance.myec2 (expand)"
+		"[root] provider[\"registry.terraform.io/hashicorp/aws\"] (close)" -> "[root] aws_instance.myec2 (expand)"
+		"[root] provider[\"registry.terraform.io/hashicorp/aws\"] (close)" -> "[root] aws_security_group.web-ec2-security-group (expand)"
+		"[root] root" -> "[root] meta.count-boundary (EachMode fixup)"
+		"[root] root" -> "[root] provider[\"registry.terraform.io/hashicorp/aws\"] (close)"
+	}
+}
+
